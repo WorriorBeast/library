@@ -1,0 +1,95 @@
+html, body {
+    font-size: 16px;
+    margin: 0;
+    font-family: Verdana, Arial, sans-serif, Georgia, Garamond, serif;
+}
+
+::backdrop {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e6dcdc;
+    padding: 0 30px;
+    box-shadow: 0px -6px 17px 0px black;
+    background-color: #f4f4f4;
+}
+
+ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+ul:first-child li:nth-child(2) {
+    margin: 22px 0;
+}
+
+a {
+    font-size: 2rem;
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: #8b38f7;
+}
+
+ul:nth-child(1) li:nth-child(1) a:hover svg {
+    fill: #8b38f7;
+}
+
+a:active {
+    color: black;
+}
+
+ul:nth-child(1) li:nth-child(1) a:active svg {
+    fill: black
+}
+
+ul:nth-child(2) li:first-child svg {
+    height: 1.5rem;
+    padding-top: 3px;
+}
+
+ul:nth-child(2) li:nth-child(2) {
+    padding-right: 20px;
+}
+
+input[type="search"] {
+    border-radius: 15px;
+    border: 1.5px solid black;
+    width: 20vw;
+    padding: 3px 3px 3px 8px;
+    background-color: #f4f4f4;
+}
+
+.add-book {
+    border-radius: 15px;
+    border: 1.5px solid black;
+    background-color: #f4f4f4;
+    cursor: pointer;
+    padding: 3px 8px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+svg {
+    height: 2.5rem;
+    display: inline-block;
+}

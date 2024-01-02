@@ -93,3 +93,61 @@ svg {
     height: 2.5rem;
     display: inline-block;
 }
+
+dialog {
+    padding: 0 0 16px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding-left: 16px;
+    padding-top: 10px;
+}
+
+dialog h1 {
+    background-color: #98c8f3;
+    margin: 0;
+    padding: 22px 16px;
+}
+
+.book-info {
+    display: flex;
+}
+
+label {
+    width: 10ch;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    margin-left: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #c1e2ff;
+    cursor: pointer;
+}
+
+
+form input {
+    background-color:#f4f4f4;
+    border: none;
+    padding: 3px 5px;
+}
+
+input {
+    outline-color: blue;
+}

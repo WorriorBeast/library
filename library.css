@@ -151,3 +151,8 @@ form input {
 input {
     outline-color: blue;
 }
+
+.error-input {
+    color: red;
+    font-size: 0.7rem;
+}

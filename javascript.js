@@ -12,19 +12,25 @@ addBookBtn.addEventListener('click', () => {
 });
 
 form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    dialog.close();
-
     const read = document.querySelector('[name="read"]:checked').value;
 
     const book = new Book(textInput[0].value, textInput[1].value, textInput[2].value, textInput[3].value,
                 pages.value, read);
 
-    book.capitalizeWord();
-    
-    library.push(book);
+    e.preventDefault();            
 
-    this.reset();
+    if (book.checkPageInput() == false) {
+        book.showErrorInput();
+
+    } else {
+        dialog.close();
+        book.capitalizeWord();
+
+        library.push(book);
+        book.removeError();
+
+        this.reset();
+    }
 });
 
 function Book(title, author, genre, language, pages, read) {
@@ -64,3 +70,30 @@ Book.prototype.capitalizeWord = function() {
     this.genre = splitGenre.join(' ');
     this.language = splitLanguage.join(' ');
 };
+
+Book.prototype.checkPageInput = function() {
+    if (!Number.isInteger(Number(this.pages))) {
+        return false;
+    } else if (this.pages.includes('.')) {
+        let pageArray = this.pages.split('.')
+        this.pages = pageArray[0];
+    }
+}
+
+Book.prototype.showErrorInput = function() {
+    const form = document.querySelector('form');
+    const errorMsg = document.createElement('div');
+    const fieldSetRef = document.querySelector('fieldset');
+
+    errorMsg.classList.toggle('error-input');
+    errorMsg.textContent = 'Please enter a whole number or leave blank';
+
+    form.insertBefore(errorMsg, fieldSetRef);
+}
+
+Book.prototype.removeError = function() {
+    const form = document.querySelector('form');
+    const errorMsg = document.querySelector('.error-input');
+
+    form.removeChild(errorMsg);
+}

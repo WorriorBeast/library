@@ -29,6 +29,7 @@ form.addEventListener('submit', function(e) {
         library.push(book);
         book.removeError();
 
+        console.log(library);
         this.reset();
     }
 });
@@ -88,12 +89,14 @@ Book.prototype.showErrorInput = function() {
     errorMsg.classList.toggle('error-input');
     errorMsg.textContent = 'Please enter a whole number or leave blank';
 
-    form.insertBefore(errorMsg, fieldSetRef);
+    const errorNode = document.querySelector('.error-input');
+
+    if (!document.contains(errorNode)) form.insertBefore(errorMsg, fieldSetRef);
 }
 
 Book.prototype.removeError = function() {
     const form = document.querySelector('form');
     const errorMsg = document.querySelector('.error-input');
 
-    form.removeChild(errorMsg);
+    if (document.contains(errorMsg)) form.removeChild(errorMsg);
 }

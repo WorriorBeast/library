@@ -58,11 +58,17 @@ Book.prototype.capitalizeWord = function() {
 
     for (i = 0; i < splitTitle.length; i++) {
         splitTitle[i] = splitTitle[i].at(0).toUpperCase() + splitTitle[i].slice(1);
+    }
 
+    for (i = 0; i < splitAuthor.length; i++) {
         splitAuthor[i] = splitAuthor[i].at(0).toUpperCase() + splitAuthor[i].slice(1);
-        
+    }
+
+    for (i = 0; i < splitGenre.length; i++) {
         splitGenre[i] = splitGenre[i].at(0).toUpperCase() + splitGenre[i].slice(1);
-        
+    }
+
+    for (i = 0; i < splitLanguage.length; i++) {
         splitLanguage[i] = splitLanguage[i].at(0).toUpperCase() + splitLanguage[i].slice(1);
     }
 

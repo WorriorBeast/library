@@ -29,7 +29,6 @@ form.addEventListener('submit', function(e) {
         library.push(book);
         book.removeError();
 
-        console.log(library);
         this.reset();
     }
 });
@@ -88,7 +87,6 @@ Book.prototype.checkPageInput = function() {
 }
 
 Book.prototype.showErrorInput = function() {
-    const form = document.querySelector('form');
     const errorMsg = document.createElement('div');
     const fieldSetRef = document.querySelector('fieldset');
 
@@ -101,7 +99,6 @@ Book.prototype.showErrorInput = function() {
 }
 
 Book.prototype.removeError = function() {
-    const form = document.querySelector('form');
     const errorMsg = document.querySelector('.error-input');
 
     if (document.contains(errorMsg)) form.removeChild(errorMsg);

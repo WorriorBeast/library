@@ -30,6 +30,7 @@ form.addEventListener('submit', function(e) {
         book.removeError();
 
         this.reset();
+        displayBook();
     }
 });
 
@@ -84,7 +85,7 @@ Book.prototype.checkPageInput = function() {
         let pageArray = this.pages.split('.')
         this.pages = pageArray[0];
     }
-}
+};
 
 Book.prototype.showErrorInput = function() {
     const errorMsg = document.createElement('div');
@@ -96,10 +97,81 @@ Book.prototype.showErrorInput = function() {
     const errorNode = document.querySelector('.error-input');
 
     if (!document.contains(errorNode)) form.insertBefore(errorMsg, fieldSetRef);
-}
+};
 
 Book.prototype.removeError = function() {
     const errorMsg = document.querySelector('.error-input');
 
     if (document.contains(errorMsg)) form.removeChild(errorMsg);
+};
+
+function displayBook() {
+    const bookContainer = document.querySelector('.book-container');
+    const bookItem = document.createElement('div');
+
+    bookItem.classList.toggle('book-item');
+    bookContainer.appendChild(bookItem);
+
+    displayBookCover()
+    displayExtraBookInfo();
+}
+
+function displayBookCover() {
+    const index = library.length - 1;
+    const bookNode = document.querySelector('.book-item:last-child');
+    const bookCover = document.createElement('div');
+
+    bookCover.classList.toggle('book-cover');
+    bookCover.style.cssText = 'background-image: url(./book-cover-images/europeana-pink-white-flower.jpeg)';
+    bookNode.appendChild(bookCover);
+
+    const bookInfo = document.createElement('div');
+
+    bookInfo.classList.toggle('info');
+    bookNode.appendChild(bookInfo);
+
+    const bookCoverNode = document.querySelector('.book-item:last-child .book-cover');
+    const titleElement = document.createElement('div');
+    
+    titleElement.classList.toggle('title');
+    titleElement.textContent = library[index].title;
+    bookCoverNode.appendChild(titleElement);
+
+    const authorElement = document.createElement('div');
+
+    authorElement.classList.toggle('author');
+    authorElement.textContent = library[index].author;
+    bookCoverNode.appendChild(authorElement);
+}
+
+function displayExtraBookInfo() {
+    const index = library.length - 1;
+    const infoContainer = document.querySelector('.book-item:last-child .info');
+    const genreElement = document.createElement('div');
+    
+    genreElement.classList.toggle('additional-info');
+    genreElement.textContent = 'Genre: ' + library[index].genre;
+    infoContainer.appendChild(genreElement);
+
+    const languageElement = document.createElement('div');
+
+    languageElement.classList.toggle('additional-info');
+    languageElement.textContent = 'Language: ' + library[index].language;
+    infoContainer.appendChild(languageElement);
+
+    const pagesElement = document.createElement('div');
+
+    pagesElement.classList.toggle('additional-info');
+    if (library[index].pages !== '') {
+        pagesElement.textContent = 'Pages: ' + library[index].pages;
+    } else {
+        pagesElement.textContent = 'Pages: Unknown';
+    }
+    infoContainer.appendChild(pagesElement);
+
+    const readElement = document.createElement('div');
+
+    readElement.classList.toggle('additional-info');
+    readElement.textContent = 'Read: ' + library[index].read;
+    infoContainer.appendChild(readElement);
 }

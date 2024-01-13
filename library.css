@@ -156,3 +156,48 @@ input {
     color: red;
     font-size: 0.7rem;
 }
+
+.book-container {
+    display: grid;
+    grid-template-rows: 280px;
+    grid-auto-rows: 280px;
+    grid-template-columns: repeat(auto-fit, 175px);
+    gap: 35px;
+    margin: 20px;
+}
+
+.book-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-cover {
+    height: 75%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 7px 7px 15px 0px #9d9595;
+}
+
+.info {
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 1rem;
+    padding: 0 10px;
+    text-align: center;
+}
+
+.author {
+    font-size: 0.9rem;
+    font-family: 'Brush Script MT', cursive;
+}
+
+.additional-info {
+    font-size: 0.7rem;
+}

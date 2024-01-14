@@ -31,6 +31,7 @@ form.addEventListener('submit', function(e) {
 
         this.reset();
         displayBook();
+        checkForDarkImage();
     }
 });
 
@@ -122,7 +123,7 @@ function displayBookCover() {
     const bookCover = document.createElement('div');
 
     bookCover.classList.toggle('book-cover');
-    bookCover.style.cssText = 'background-image: url(./book-cover-images/europeana-pink-white-flower.jpeg)';
+    bookCover.style.cssText = `background-image: url(${randomBookCover()})`;
     bookNode.appendChild(bookCover);
 
     const bookInfo = document.createElement('div');
@@ -174,4 +175,38 @@ function displayExtraBookInfo() {
     readElement.classList.toggle('additional-info');
     readElement.textContent = 'Read: ' + library[index].read;
     infoContainer.appendChild(readElement);
+}
+
+function randomBookCover() {
+    let imageFilePath = ['./book-cover-images/europeana-pink-white-flower.jpeg',
+    './book-cover-images/luca-nicoletti-white-and-black.jpeg',
+    './book-cover-images/masaaki-komori-cherry-blossom.jpeg',
+    './book-cover-images/birmingham-museums-trust-woman-white-dress.jpeg',
+    './book-cover-images/peter-forster-person-face.jpeg',
+    './book-cover-images/nikolas-noonan-storm.jpeg',
+    './book-cover-images/simon-lee-bubbles-floating.jpeg',
+    './book-cover-images/alex-mihu-handprint-on-window.jpeg'];
+
+    let randomImage = imageFilePath[Math.floor(Math.random() * imageFilePath.length)];
+
+    return randomImage;
+}
+
+function checkForDarkImage() {
+    const imageNode = document.querySelector('.book-item:last-child div[style]');
+    const accessStyle = window.getComputedStyle(imageNode, null);
+    const imageUrl = accessStyle.getPropertyValue('background-image');
+    
+    const titleNode = document.querySelector('.book-item:last-child .book-cover .title');
+    const authorNode = document.querySelector('.book-item:last-child .book-cover .author');
+
+    let darkImage = ['url("file:///Users/Emmanuel/repos/library/book-cover-images/alex-mihu-handprint-on-window.jpeg")',
+    'url("file:///Users/Emmanuel/repos/library/book-cover-images/luca-nicoletti-white-and-black.jpeg")',
+    'url("file:///Users/Emmanuel/repos/library/book-cover-images/nikolas-noonan-storm.jpeg")',
+    'url("file:///Users/Emmanuel/repos/library/book-cover-images/peter-forster-person-face.jpeg")'];
+
+    if (darkImage.includes(imageUrl)) {
+        titleNode.style.cssText = 'color: red';
+        authorNode.style.cssText = 'color: red';
+    }
 }

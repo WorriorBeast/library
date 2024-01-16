@@ -143,6 +143,8 @@ function displayBookCover() {
     authorElement.classList.toggle('author');
     authorElement.textContent = library[index].author;
     bookCoverNode.appendChild(authorElement);
+
+    addDeleteBtn();
 }
 
 function displayExtraBookInfo() {
@@ -209,4 +211,26 @@ function checkForDarkImage() {
         titleNode.style.cssText = 'color: red';
         authorNode.style.cssText = 'color: red';
     }
+}
+
+function addEditControls() {
+    const bookDisplay = document.querySelector('.book-item:last-child .book-cover');
+    const titleReference = document.querySelector('.book-item:last-child .book-cover .title');
+    const editContainer = document.createElement('div');
+
+    editContainer.classList.toggle('book-controls');
+    bookDisplay.insertBefore(editContainer, titleReference);
+
+    const controlsNode = document.querySelector('.book-item:last-child .book-cover .book-controls');
+    const deleteBtn = document.createElement('button');
+
+    deleteBtn.classList.toggle('delete-btn');
+    deleteBtn.textContent = 'X';
+    controlsNode.appendChild(deleteBtn);
+
+    const toggleRead = document.createElement('button');
+
+    toggleRead.classList.toggle('read-btn');
+    toggleRead.textContent = 'READ';
+    controlsNode.appendChild(toggleRead);
 }

@@ -175,9 +175,9 @@ input {
     height: 75%;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: grid;
+    grid-template-rows: 16px 1fr 1fr;
+    justify-items: center;
     align-items: center;
     box-shadow: 7px 7px 15px 0px #9d9595;
 }
@@ -200,4 +200,28 @@ input {
 
 .additional-info {
     font-size: 0.7rem;
+}
+
+.delete-btn, 
+.read-btn {
+    background-color: transparent;
+    border: none;
+    color: #00caff;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.book-controls {
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 87.5px 87.5px;
+    margin-top: 5px;
+}
+
+.read-btn {
+    justify-self: end;
+    font-size: 0.8rem;
+    border: 1px solid #00caff;
+    margin-right: 2px;
+    border-radius: 5px;
 }

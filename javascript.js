@@ -144,7 +144,7 @@ function displayBookCover() {
     authorElement.textContent = library[index].author;
     bookCoverNode.appendChild(authorElement);
 
-    addDeleteBtn();
+    addEditControls();
 }
 
 function displayExtraBookInfo() {

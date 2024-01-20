@@ -32,6 +32,7 @@ form.addEventListener('submit', function(e) {
         this.reset();
         displayBook();
         checkForDarkImage();
+        //toggleRead();
     }
 });
 
@@ -113,7 +114,7 @@ function displayBook() {
     bookItem.classList.toggle('book-item');
     bookContainer.appendChild(bookItem);
 
-    displayBookCover()
+    displayBookCover();
     displayExtraBookInfo();
 }
 
@@ -232,5 +233,32 @@ function addEditControls() {
 
     toggleRead.classList.toggle('read-btn');
     toggleRead.textContent = 'READ';
+    toggleRead.setAttribute('id', `toggle-${incrementId}`)
     controlsNode.appendChild(toggleRead);
 }
+
+let x = 0;
+
+function incrementId() {
+    x++;
+    return x;
+}
+
+const bookDisplay = document.querySelector('.book-container');
+
+function toggleRead() {
+    bookDisplay.addEventListener('click', function(e) {
+        if (e.target.id) {
+            const test = e.target.closest('.book-item');
+            const test2 = test.childNodes[1].childNodes[3];
+
+            if (test2.textContent !== 'Read: yes') {
+                test2.textContent = 'Read: yes';
+            } else {
+                test2.textContent = 'Read: no';
+            }
+        }
+    })
+}
+
+toggleRead();

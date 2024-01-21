@@ -32,7 +32,6 @@ form.addEventListener('submit', function(e) {
         this.reset();
         displayBook();
         checkForDarkImage();
-        //toggleRead();
     }
 });
 
@@ -227,13 +226,14 @@ function addEditControls() {
 
     deleteBtn.classList.toggle('delete-btn');
     deleteBtn.textContent = 'X';
+    deleteBtn.setAttribute('id', `remove-${incrementId()}`)
     controlsNode.appendChild(deleteBtn);
 
     const toggleRead = document.createElement('button');
 
     toggleRead.classList.toggle('read-btn');
     toggleRead.textContent = 'READ';
-    toggleRead.setAttribute('id', `toggle-${incrementId}`)
+    toggleRead.setAttribute('id', `toggle-${x}`);
     controlsNode.appendChild(toggleRead);
 }
 
@@ -248,17 +248,33 @@ const bookDisplay = document.querySelector('.book-container');
 
 function toggleRead() {
     bookDisplay.addEventListener('click', function(e) {
-        if (e.target.id) {
-            const test = e.target.closest('.book-item');
-            const test2 = test.childNodes[1].childNodes[3];
+        let idToggle = e.target.id.slice(0,6);
+        
+        if (idToggle == 'toggle') {
+            const bookNode = e.target.closest('.book-item');
+            const readNode = bookNode.childNodes[1].childNodes[3];
 
-            if (test2.textContent !== 'Read: yes') {
-                test2.textContent = 'Read: yes';
+            if (readNode.textContent !== 'Read: yes') {
+                readNode.textContent = 'Read: yes';
             } else {
-                test2.textContent = 'Read: no';
+                readNode.textContent = 'Read: no';
             }
         }
     })
 }
 
 toggleRead();
+
+function removeBook() {
+    bookDisplay.addEventListener('click', function(e) {
+        let idRemove = e.target.id.slice(0,6);
+
+        if (idRemove == 'remove') {
+            const bookNode = e.target.closest('.book-item');
+            
+            bookNode.remove();
+        }
+    })
+}
+
+removeBook();

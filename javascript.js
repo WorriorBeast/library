@@ -30,7 +30,7 @@ form.addEventListener('submit', function(e) {
         book.removeError();
 
         this.reset();
-        displayBook();
+        displayBook(book);
         checkForDarkImage();
     }
 });
@@ -106,19 +106,18 @@ Book.prototype.removeError = function() {
     if (document.contains(errorMsg)) form.removeChild(errorMsg);
 };
 
-function displayBook() {
+function displayBook(book) {
     const bookContainer = document.querySelector('.book-container');
     const bookItem = document.createElement('div');
 
     bookItem.classList.toggle('book-item');
     bookContainer.appendChild(bookItem);
 
-    displayBookCover();
-    displayExtraBookInfo();
+    displayBookCover(book);
+    displayExtraBookInfo(book);
 }
 
-function displayBookCover() {
-    const index = library.length - 1;
+function displayBookCover(book) {
     const bookNode = document.querySelector('.book-item:last-child');
     const bookCover = document.createElement('div');
 
@@ -135,38 +134,37 @@ function displayBookCover() {
     const titleElement = document.createElement('div');
     
     titleElement.classList.toggle('title');
-    titleElement.textContent = library[index].title;
+    titleElement.textContent = book.title;
     bookCoverNode.appendChild(titleElement);
 
     const authorElement = document.createElement('div');
 
     authorElement.classList.toggle('author');
-    authorElement.textContent = library[index].author;
+    authorElement.textContent = book.author;
     bookCoverNode.appendChild(authorElement);
 
     addEditControls();
 }
 
-function displayExtraBookInfo() {
-    const index = library.length - 1;
+function displayExtraBookInfo(book) {
     const infoContainer = document.querySelector('.book-item:last-child .info');
     const genreElement = document.createElement('div');
     
     genreElement.classList.toggle('additional-info');
-    genreElement.textContent = 'Genre: ' + library[index].genre;
+    genreElement.textContent = 'Genre: ' + book.genre;
     infoContainer.appendChild(genreElement);
 
     const languageElement = document.createElement('div');
 
     languageElement.classList.toggle('additional-info');
-    languageElement.textContent = 'Language: ' + library[index].language;
+    languageElement.textContent = 'Language: ' + book.language;
     infoContainer.appendChild(languageElement);
 
     const pagesElement = document.createElement('div');
 
     pagesElement.classList.toggle('additional-info');
-    if (library[index].pages !== '') {
-        pagesElement.textContent = 'Pages: ' + library[index].pages;
+    if (book.pages !== '') {
+        pagesElement.textContent = 'Pages: ' + book.pages;
     } else {
         pagesElement.textContent = 'Pages: Unknown';
     }
@@ -175,7 +173,7 @@ function displayExtraBookInfo() {
     const readElement = document.createElement('div');
 
     readElement.classList.toggle('additional-info');
-    readElement.textContent = 'Read: ' + library[index].read;
+    readElement.textContent = 'Read: ' + book.read;
     infoContainer.appendChild(readElement);
 }
 

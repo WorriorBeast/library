@@ -1,5 +1,10 @@
 # library
 
+The objective is to use objects and object constructor to create books and display them on the screen. To create a
+book the user has to click on "New Book" to bring up a form. User enters the book's information and presses
+the add button to submit. Promptly the book is displayed along with the additional information that was entered.
+Each book has a button to remove that book and to change its read status.
+
 Below is a list of images I used as book covers with their respective url link, photographer/creator, title, and
 file path.
 
